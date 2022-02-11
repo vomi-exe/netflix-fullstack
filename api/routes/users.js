@@ -22,15 +22,44 @@ router.put('/:id', verify, async (req, res) => {
     } else {
         res.status(403).json("You can only update your account");
     }
-})
-
-
-
-
+});
 
 //DELETE
 
+router.delete('/:id', verify, async (req, res) => {
+    if (req.user.id === req.params.id || req.user.isAdmin) {
+
+        try {
+            await User.deleteOne({ _id: req.params.id });
+            res.status(200).json("User Deleted succesfully");
+        } catch (err) {
+            res.status(500).json(err);
+        }
+
+    } else {
+        res.status(403).json("You can only Delete your account");
+    }
+});
+
 //GET
+
+router.get("/:id", verify, async (req, res) => {
+    if (req.user.id === req.params.id || req.user.isAdmin) {
+        try {
+            const currentUser = await User.findById({ _id: req.params.id });
+            const { password, ...info } = currentUser._doc;
+            res.status(200).json(info);
+
+        } catch (err) {
+            res.status(500).json(err);
+        }
+
+    } else {
+        res.status(403).json("You can only access your account");
+    }
+
+
+});
 
 //GET ALL
 
