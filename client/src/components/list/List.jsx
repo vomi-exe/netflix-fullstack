@@ -3,7 +3,7 @@ import { ArrowBackIos, ArrowForwardIos } from "@material-ui/icons";
 import ListItem from "../listItem/ListItem";
 import "./list.scss";
 
-const List = () => {
+const List = ({ list }) => {
     const [slideNumber, setSlideNumber] = useState(0);
     const [isMoved, setIsMoved] = useState(false);
 
@@ -26,22 +26,14 @@ const List = () => {
     const [num, setNum] = useState(-1);
 
     return <div className="list">
-        <span className="listTitle">Continue to watch</span>
+        <span className="listTitle">{list.title}</span>
         <div className="wrapper">
             <ArrowBackIos style={{ display: !isMoved && "none" }} className="sliderArrow left" onClick={() => handleClick("left")} />
+
             <div className="container" ref={listRef}>
-                <ListItem index={0} setNum={setNum} num={num} />
-                <ListItem index={1} setNum={setNum} num={num} />
-                <ListItem index={2} setNum={setNum} num={num} />
-                <ListItem index={3} setNum={setNum} num={num} />
-                <ListItem index={4} setNum={setNum} num={num} />
-                <ListItem index={5} setNum={setNum} num={num} />
-                <ListItem index={6} setNum={setNum} num={num} />
-                <ListItem index={7} setNum={setNum} num={num} />
-                <ListItem index={8} setNum={setNum} num={num} />
-                <ListItem index={9} setNum={setNum} num={num} />
-                <ListItem index={10} setNum={setNum} num={num} />
-                <ListItem index={11} setNum={setNum} num={num} />
+                {list.content.map((item, index) => (
+                    <ListItem id={item} index={index} setNum={setNum} num={num} />
+                ))}
             </div>
             <ArrowForwardIos className="sliderArrow right" onClick={() => handleClick("right")} />
         </div>

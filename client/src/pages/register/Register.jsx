@@ -48,7 +48,7 @@ const Register = () => {
                 </form>
             )}
         </div>
-        <p className="lastLine">
+        {/* <p className="lastLine">
             <Link className="link" style={{ textDecoration: 'none' }} to="/home">
                 <Button className="btn-blw" variant="contained">Home</Button>
             </Link>
@@ -62,7 +62,7 @@ const Register = () => {
                     Login
                 </Button>
             </Link>
-        </p>
+        </p> */}
 
 
     </div>;
