@@ -1,0 +1,9 @@
+.newProduct {
+  flex: 4;
+  padding: 20px;
+}
+
+.newProductBtn {
+  width: 200px !important;
+  font-weight: 600 !important;
+}

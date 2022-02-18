@@ -1,0 +1,11 @@
+.default {
+  flex: 4;
+}
+
+.defaultImg {
+  width: 60%;
+  height: 60%;
+  position: relative;
+  top: 40px;
+  margin-left: 260px;
+}

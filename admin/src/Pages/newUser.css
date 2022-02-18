@@ -1,0 +1,70 @@
+.newUser {
+  flex: 4;
+}
+
+.newUserContainer {
+  margin: 40px;
+  padding: 20px 20px 20px 30px;
+  border-radius: 5px;
+  box-shadow: 0px 0px 10px 2px rgba(223, 214, 214, 0.68);
+}
+
+.newUserForm {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.newUserItem {
+  width: 400px;
+  display: flex;
+  flex-direction: column;
+  margin-top: 10px;
+  margin-right: 100px;
+}
+
+.newUserItem > label {
+  margin-bottom: 10px;
+  font-size: 18px;
+  font-weight: 600;
+  color: rgb(61, 56, 56);
+}
+
+.newUserItem > input {
+  height: 18px;
+  padding: 10px 10px;
+  border: 1px solid gray;
+  border-radius: 3px;
+  font-size: 16px;
+}
+
+.newUserGender {
+  margin-top: 5px;
+}
+.newUserGenderTitle {
+  margin-top: 5px;
+}
+.newUserGender > label {
+  margin: 10px;
+  font-size: 15px;
+  color: rgb(61, 56, 56);
+}
+.newUserActiveTitle {
+  margin: 5px 0 20px 0;
+}
+
+.newUserSelect {
+  margin: 5px 0 20px 0;
+  padding: 8px;
+  font-size: 16px;
+}
+
+.newUserCreateBtn {
+  position: relative !important;
+  display: inline-block !important;
+  height: 40px !important;
+  width: 100px !important;
+  font-size: 16px !important;
+  font-weight: 600 !important;
+  top: 130px !important;
+  left: 450px !important;
+}
