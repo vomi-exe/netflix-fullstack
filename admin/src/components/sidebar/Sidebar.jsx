@@ -13,6 +13,7 @@ import QuestionAnswerIcon from '@material-ui/icons/QuestionAnswer';
 import SupervisedUserCircleIcon from '@material-ui/icons/SupervisedUserCircle';
 import ReportIcon from '@material-ui/icons/Report';
 import { NavLink } from "react-router-dom"
+import MovieFilterIcon from '@material-ui/icons/MovieFilter';
 
 const Sidebar = () => {
     return (
@@ -52,10 +53,10 @@ const Sidebar = () => {
                                 Users
                             </li>
                         </NavLink >
-                        <NavLink className="sidebarListItem link" activeClassName="active" to="/products">
+                        <NavLink className="sidebarListItem link" activeClassName="active" to="/movies">
                             <li className="listItemSidebar" >
-                                <StoreIcon className="sidebarIcon" />
-                                Products
+                                <MovieFilterIcon className="sidebarIcon" />
+                                Movies
                             </li>
                         </NavLink>
                         <NavLink className="sidebarListItem link" to="/transcripts">

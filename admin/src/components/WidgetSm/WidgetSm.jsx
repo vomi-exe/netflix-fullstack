@@ -1,81 +1,49 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import "./widgetSm.css";
 import VisibilityIcon from '@material-ui/icons/Visibility';
-
+import axios from "axios";
 const WidgetSm = () => {
+
+    const [newUser, setNewUser] = useState([]);
+
+    useEffect(() => {
+        const getNewUsers = async () => {
+            try {
+                const res = await axios.get("users?new=true", {
+                    headers: {
+                        token: "Beaere eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMDYzNDEyYzQ0ODIxMmQzYjdiM2FiNSIsImlzQWRtaW4iOnRydWUsImlhdCI6MTY0NTA5NDc1MywiZXhwIjoxNjQ1NTI2NzUzfQ.UoDjcyCPWHY3ZTuod2gyH4lBT89ZHv9fF1Oz2F9T2dE"
+                    },
+                });
+                setNewUser(res.data);
+            } catch (e) {
+                console.log(e);
+            }
+        }
+        getNewUsers();
+    }, []);
+
+
     return (
         <div className="widgetSm">
             <span className="widgetSmTitle">New Joined Members</span>
             <ul className="widgetSmList">
-                <li className="widgetSmListItem">
-                    <img className="widgetSmImg"
-                        src="https://images.pexels.com/photos/8537298/pexels-photo-8537298.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
-                        alt="Profile-Imge" />
-                    <div className="widgetSmUser">
-                        <span className="widgetSmUsername">Anna Keller</span>
-                        <span className="widgetSmUserTitle">Software Engineer</span>
-                    </div>
-                    <button className="widgetSmButton">
-                        <VisibilityIcon className="widgetSmbuttonIcon" />
-                        Display
-                    </button>
-                </li>
-                <li className="widgetSmListItem">
-                    <img className="widgetSmImg"
-                        src="./person/3.jpeg"
-                        alt="Profile-Imge" />
-                    <div className="widgetSmUser">
-                        <span className="widgetSmUsername">Lon Moore</span>
-                        <span className="widgetSmUserTitle">Software Engineer</span>
-
-                    </div>
-                    <button className="widgetSmButton">
-                        <VisibilityIcon className="widgetSmbuttonIcon" />
-                        Display
-                    </button>
-                </li>
-                <li className="widgetSmListItem">
-                    <img className="widgetSmImg"
-                        src="./person/11.jpeg"
-                        alt="Profile-Imge" />
-                    <div className="widgetSmUser">
-                        <span className="widgetSmUsername">Ben N. Syder</span>
-                        <span className="widgetSmUserTitle">Software Engineer</span>
-
-                    </div>
-                    <button className="widgetSmButton">
-                        <VisibilityIcon className="widgetSmbuttonIcon" />
-                        Display
-                    </button>
-                </li>
-                <li className="widgetSmListItem">
-                    <img className="widgetSmImg"
-                        src="./person/1.jpeg"
-                        alt="Profile-Imge" />
-                    <div className="widgetSmUser">
-                        <span className="widgetSmUsername">Stacy Rect</span>
-                        <span className="widgetSmUserTitle">Chiefwar Enginner</span>
-
-                    </div>
-                    <button className="widgetSmButton">
-                        <VisibilityIcon className="widgetSmbuttonIcon" />
-                        Display
-                    </button>
-                </li>
-                <li className="widgetSmListItem">
-                    <img className="widgetSmImg"
-                        src="./person/10.jpeg"
-                        alt="Profile-Imge" />
-                    <div className="widgetSmUser">
-                        <span className="widgetSmUsername">Andy Fel</span>
-                        <span className="widgetSmUserTitle">Software Engineer</span>
-
-                    </div>
-                    <button className="widgetSmButton">
-                        <VisibilityIcon className="widgetSmbuttonIcon" />
-                        Display
-                    </button>
-                </li>
+                {
+                    newUser.map((user) => (
+                        <li className="widgetSmListItem">
+                            <img className="widgetSmImg"
+                                src={user.profilePic ? user.profilePic : "https://upload.wikimedia.org/wikipedia/commons/0/0b/Netflix-avatar.png"}
+                                alt="Profile-Imge" />
+                            <div className="widgetSmUser">
+                                <span className="widgetSmUsername">{user.username}</span>
+                                <span className="widgetSmUserTitle">{user.email}</span>
+                            </div>
+                            <button className="widgetSmButton">
+                                <VisibilityIcon className="widgetSmbuttonIcon" />
+                                Display
+                            </button>
+                        </li>
+                    ))
+                }
             </ul>
         </div>
     );
