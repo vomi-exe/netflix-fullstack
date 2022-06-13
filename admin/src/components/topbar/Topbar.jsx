@@ -1,4 +1,4 @@
-import React from 'react';
+import { useState, useContext } from "react";
 import './topbar.css';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import NotificationsNoneIcon from '@material-ui/icons/NotificationsNone';
@@ -7,8 +7,8 @@ import LanguageIcon from '@material-ui/icons/Language';
 import SettingsApplicationsIcon from '@material-ui/icons/SettingsApplications';
 import SettingsIcon from '@material-ui/icons/Settings';
 import { Link } from "react-router-dom";
-
-import { useState } from 'react';
+import { AuthContext } from "../../context/authContext/AuthContext";
+import { logoutStart } from '../../context/authContext/apiCalls';
 
 const Topbar = () => {
 
@@ -16,6 +16,11 @@ const Topbar = () => {
     const [isShown2, setIsShown2] = useState(false);
     const [isShown3, setIsShown3] = useState(false);
 
+    const { dispatch } = useContext(AuthContext);
+
+    const handleLogout = () => {
+        logoutStart(dispatch);
+    }
 
 
     return (
@@ -58,7 +63,11 @@ const Topbar = () => {
                         </span>
                     </div>
                     <img className="avatarImgTop" src="https://pbs.twimg.com/profile_images/831433602009292800/gUK32WmZ_400x400.jpg" alt="Admin-imge" />
-
+                    <div className="logout">
+                        <button
+                            onClick={handleLogout}
+                        >Logout</button>
+                    </div>
                 </div>
             </div>
         </div>

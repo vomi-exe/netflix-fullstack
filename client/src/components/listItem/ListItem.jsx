@@ -15,7 +15,7 @@ const ListItem = ({ index, setNum, num, id }) => {
             try {
                 const res = await axios.get("movies/find/" + id, {
                     headers: {
-                        token: "Beaere eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMDYzNDEyYzQ0ODIxMmQzYjdiM2FiNSIsImlzQWRtaW4iOnRydWUsImlhdCI6MTY0NTA5NDc1MywiZXhwIjoxNjQ1NTI2NzUzfQ.UoDjcyCPWHY3ZTuod2gyH4lBT89ZHv9fF1Oz2F9T2dE"
+                        token: "Beaere eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMDYzNDEyYzQ0ODIxMmQzYjdiM2FiNSIsImlzQWRtaW4iOnRydWUsImlhdCI6MTY1NDkzMjkwMSwiZXhwIjoxNjU1MzY0OTAxfQ.PTXl3xyrMKDhPPJxHddsuaCtmBM-x_l8lTNkM3PFtcM"
                     },
                 });
                 setItem(res.data);
