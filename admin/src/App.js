@@ -40,11 +40,11 @@ function App() {
             <Route path="/movies" exact>
               <Productlist />
             </Route>
-            <Route exact path="/products/newproduct">
-              <NewProduct />
-            </Route>
             <Route exact path="/products/:productId">
               <Product />
+            </Route>
+            <Route exact path="/newproduct">
+              <NewProduct />
             </Route>
           </div>
         </>)

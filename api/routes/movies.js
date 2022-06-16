@@ -95,7 +95,7 @@ router.get('/', verify, async (req, res) => {
             res.status(500).json(err);
         }
     } else {
-        res.status(403).json("You are not allowed to take action to remove this movie");
+        res.status(403).json("You are not allowed");
     }
 });
 

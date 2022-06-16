@@ -2,16 +2,17 @@ import React, { useEffect } from 'react';
 import "./home.css";
 import FeaturedInfo from "../components/FeaturedInfo/FeaturedInfo";
 import Chart from '../components/Chart/Chart';
-import { userData } from "../dummydata";
 import WidgetSm from "../components/WidgetSm/WidgetSm";
 import WidgetLg from "../components/WidgetLg/WidgetLg";
 import 'aos/dist/aos.css';
-import { useState, useMemo } from "react";
+import { useState, useMemo, useContext } from "react";
 import axios from "axios";
+import { AuthContext } from "../context/authContext/AuthContext";
 
 
 
 const Home = () => {
+    const { user } = useContext(AuthContext);
 
     const MONTHS = useMemo(() =>
         [
@@ -31,13 +32,12 @@ const Home = () => {
     );
 
     const [userState, setUserState] = useState([]);
-
     useEffect(() => {
         const getState = async () => {
             try {
                 const res = await axios.get(`users/stats`, {
                     headers: {
-                        token: "Beaere eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMDYzNDEyYzQ0ODIxMmQzYjdiM2FiNSIsImlzQWRtaW4iOnRydWUsImlhdCI6MTY1NDkzMjkwMSwiZXhwIjoxNjU1MzY0OTAxfQ.PTXl3xyrMKDhPPJxHddsuaCtmBM-x_l8lTNkM3PFtcM"
+                        token: "Beaere " + user.accessToken
                     },
                 });
 
@@ -53,7 +53,7 @@ const Home = () => {
             }
         }
         getState();
-    }, [MONTHS]);
+    }, [MONTHS, user.accessToken]);
 
     console.log(userState);
 
