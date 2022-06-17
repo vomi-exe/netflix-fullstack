@@ -63,8 +63,11 @@ const Product = () => {
                         <input type="text" placeholder={movie.year} />
                         <label >Genre</label>
                         <input type="text" placeholder={movie.genre} />
+                        <label >Duration</label>
+                        <input type="text" placeholder={movie.duration} />
                         <label >Limit</label>
                         <input type="text" placeholder={movie.limit} />
+
                         <label >Trailer</label>
                         <input type="file" placeholder={movie.trailer} />
                         <label >Video</label>

@@ -1,48 +1,90 @@
-import React from 'react';
+import React, { useState } from 'react';
 import "./newProduct.css";
 import { Link } from "react-router-dom"
-import IconButton from '@material-ui/core/IconButton';
-import PhotoCamera from '@material-ui/icons/PhotoCamera';
 import Button from '@material-ui/core/Button';
 
 
 const Newproduct = () => {
+
+
+    const [movie, setMovie] = useState(null);
+    const [img, setImg] = useState(null);
+    const [imgTitle, setImgTitle] = useState(null);
+    const [imgSm, setImgSm] = useState(null);
+    const [trailer, setTrailer] = useState(null);
+    const [video, setVideo] = useState(null);
+
+    const handleChange = (e) => {
+        const value = e.target.value;
+        setMovie({ ...movie, [e.target.name]: value });
+    }
+
+
     return (
         <div className="newProduct">
-            <h1 className="newProductTitle">New Product</h1>
+            <h1 className="newProductTitle">New Movie</h1>
             <form className="productForm">
                 <div className="productFormLeft">
-                    <label >Name</label>
-                    <input type="text" placeholder="Product name" />
-                    <label >In Stock</label>
-                    <input type="text" placeholder="123" />
-                    <label>Active</label>
-                    <select name="active" id="active" >
-                        <option value="yes" >Yes</option>
-                        <option value="no" >No</option>
+                    <label >Image</label>
+                    <input
+                        type="file"
+                        id="img"
+                        name="img"
+                        onChange={(e) => setImg(e.target.files[0])}
+                    />
+                    <label >Title Image</label>
+                    <input
+                        type="file"
+                        id="imgTitle"
+                        name="imgTitle"
+                        onChange={(e) => setImgTitle(e.target.files[0])}
+                    />
+                    <label >Thumbnail Image</label>
+                    <input
+                        type="file"
+                        id="imgSm"
+                        name="imgSm"
+                        onChange={(e) => setImgSm(e.target.files[0])}
+                    />
+
+                    <label >Title</label>
+                    <input type="text" placeholder="Movie name" name="title" onChange={handleChange} />
+                    <label >Description</label>
+                    <input type="text" placeholder="Description" name="desc" onChange={handleChange} />
+                    <label >Year</label>
+                    <input type="text" placeholder="Year" name="year" onChange={handleChange} />
+                    <label >Genre</label>
+                    <input type="text" placeholder="Genre" name="genre" onChange={handleChange} />
+                    <label >Duration</label>
+                    <input type="text" placeholder="Duration" name="duration" onChange={handleChange} />
+                    <label >Limit</label>
+                    <input type="text" placeholder="Limit" name="limit" onChange={handleChange} />
+                    <label>is Series ?</label>
+                    <select name="isSeries" id="isSeries" onChange={handleChange} >
+                        <option value="false" >No</option>
+                        <option value="true" >Yes</option>
                     </select>
+
+                    <label >Trailer</label>
+                    <input
+                        type="file"
+                        id="trailer"
+                        onChange={(e) => setTrailer(e.target.files[0])}
+                    />
+                    <label >Video</label>
+                    <input
+                        type="file"
+                        id="video"
+                        onChange={(e) => setVideo(e.target.files[0])}
+                    />
                 </div>
-                <div className="productFormRight">
-                    <div className="productUpload">
-                        <img
-                            className="productUploadImg"
-                            src="https://images.pexels.com/photos/5099868/pexels-photo-5099868.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
-                            alt=""
-                        />
-                        <label for="file">
-                            <IconButton color="primary" aria-label="upload picture" component="span">
-                                <PhotoCamera />
-                            </IconButton></label>
-                        <input type="file" id="file" style={{ display: "none" }} />
-                    </div>
-                    <Link className="link" to="/products">
-                        <Button className="newProductBtn" color="secondary" variant="contained" component="span">
-                            Update
-                        </Button>
-                    </Link>
-                </div>
-            </form>
-        </div>
+                <Link className="link" to="/products">
+                    <Button className="newProductBtn" color="secondary" variant="contained" component="span">
+                        Upload
+                    </Button>
+                </Link>
+            </form >
+        </div >
     );
 }
 

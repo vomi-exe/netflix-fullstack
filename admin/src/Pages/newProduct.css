@@ -1,9 +1,22 @@
 .newProduct {
   flex: 4;
   padding: 20px;
+  background-color: white;
 }
 
 .newProductBtn {
   width: 200px !important;
   font-weight: 600 !important;
+  margin-top: 1120px;
+}
+
+#isSeries {
+  padding: 8px;
+  margin-bottom: 5px;
+}
+
+.productFormLeft > label {
+  margin: 10px 10px 15px 10px;
+  color: black;
+  font-weight: 600;
 }
