@@ -1,75 +1,57 @@
 import React, { useEffect, useContext } from 'react';
-import "./productList.css";
+import "./listList.css";
 import { DataGrid } from '@material-ui/data-grid';
 import Button from '@material-ui/core/Button';
 import DeleteIcon from '@material-ui/icons/Delete';
-
 import { Link } from "react-router-dom";
-import { MovieContext } from "../context/moviesContext/MovieContext";
-import { getMovies, deleteMovies } from '../context/moviesContext/apiCalls';
+import { ListContext } from "../../context/listsContext/ListContext";
+import { getLists } from '../../context/listsContext/apiCalls';
+import { deleteLists } from '../../context/listsContext/apiCalls';
 
 
-
-const Productlist = () => {
-    const { movies, dispatch } = useContext(MovieContext);
+const ListList = () => {
+    const { lists, dispatch } = useContext(ListContext);
 
 
     useEffect(() => {
-        getMovies(dispatch);
+        getLists(dispatch);
     }, [dispatch]);
 
     const handleDelete = (id) => {
-        deleteMovies(id, dispatch);
+        deleteLists(id, dispatch);
     }
 
-    const columns = [
-        { field: '_id', headerName: 'ID', width: 200 },
-        {
-            field: 'movie',
-            headerName: 'Movie',
-            width: 190,
-            renderCell: (params) => {
-                return (
+    console.log(lists);
 
-                    <div className="productListUsers">
-                        <img className="productListRowImg" src={params.row.img} alt="" />
-                        {params.row.title}
-                    </div>
-                )
-            }
+    const columns = [
+        { field: '_id', headerName: 'ID', width: 300 },
+
+        {
+            field: 'title',
+            headerName: 'tltle',
+            width: 260,
         },
         {
             field: 'genre',
             headerName: 'Genre',
-            width: 120,
-        },
-        {
-            field: 'year',
-            headerName: 'Year',
-            width: 120,
-        },
-        {
-            field: 'limit',
-            headerName: 'Limit',
-            width: 120,
-        },
-        {
-            field: 'isSeries',
-            headerName: 'isSeries',
             width: 150,
         },
-
+        {
+            field: 'type',
+            headerName: 'type',
+            width: 170,
+        },
         {
             field: 'action',
             headerName: 'Action',
-            width: 200,
+            width: 220,
             renderCell: (params) => {
                 return (
                     <div className="productListBtn">
                         <Link
                             exact
                             style={{ textDecoration: 'none' }}
-                            to={{ pathname: "/movies/" + params.row._id, movie: params.row }}
+                            to={{ pathname: "/lists/" + params.row._id, list: params.row }}
                         >
                             <Button
                                 className="btnproductListEdit"
@@ -100,7 +82,7 @@ const Productlist = () => {
     return (
         <div className="productList">
             <DataGrid
-                rows={movies}
+                rows={lists}
                 columns={columns}
                 pageSize={11}
                 checkboxSelection
@@ -112,4 +94,4 @@ const Productlist = () => {
     );
 }
 
-export default Productlist;
+export default ListList;

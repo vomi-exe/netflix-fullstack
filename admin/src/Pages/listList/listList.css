@@ -1,0 +1,17 @@
+.productList {
+  flex: 4;
+  margin: 10px 30px 25px 30px;
+  box-shadow: 0px 0px 10px 2px rgba(223, 214, 214, 0.68);
+  border-radius: 5px;
+}
+
+
+.productListUsers {
+  display: flex;
+  justify-self: start;
+  align-items: center;
+}
+
+.btnproductListEdit {
+  margin-right: 35px !important;
+}

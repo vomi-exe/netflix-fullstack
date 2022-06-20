@@ -11,7 +11,8 @@ import Product from "./Pages/Product";
 import NewProduct from "./Pages/NewProduct";
 import Login from "./Pages/login/Login.jsx";
 import { useContext } from "react";
-import { AuthContext } from "./context/authContext/AuthContext"
+import { AuthContext } from "./context/authContext/AuthContext";
+import ListList from "./Pages/listList/ListList";
 
 function App() {
 
@@ -40,11 +41,14 @@ function App() {
             <Route path="/movies" exact>
               <Productlist />
             </Route>
-            <Route exact path="/products/:productId">
+            <Route path="/movies/:movieId">
               <Product />
             </Route>
-            <Route exact path="/newproduct">
+            <Route exact path="/create">
               <NewProduct />
+            </Route>
+            <Route path="/lists" >
+              <ListList />
             </Route>
           </div>
         </>)

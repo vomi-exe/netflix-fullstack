@@ -4,7 +4,6 @@ import LineStyleIcon from '@material-ui/icons/LineStyle';
 import TimelineIcon from '@material-ui/icons/Timeline';
 import TrendingUpIcon from '@material-ui/icons/TrendingUp';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
-import ReceiptIcon from '@material-ui/icons/Receipt';
 import AssessmentIcon from '@material-ui/icons/Assessment';
 import MailOutlineIcon from '@material-ui/icons/MailOutline';
 import DynamicFeedIcon from '@material-ui/icons/DynamicFeed';
@@ -13,6 +12,7 @@ import SupervisedUserCircleIcon from '@material-ui/icons/SupervisedUserCircle';
 import ReportIcon from '@material-ui/icons/Report';
 import { NavLink } from "react-router-dom"
 import MovieFilterIcon from '@material-ui/icons/MovieFilter';
+import List from '@material-ui/icons/List';
 
 const Sidebar = () => {
     return (
@@ -58,10 +58,10 @@ const Sidebar = () => {
                                 Movies
                             </li>
                         </NavLink>
-                        <NavLink className="sidebarListItem link" to="/transcripts">
+                        <NavLink className="sidebarListItem link" activeClassName="active" to="/lists">
                             <li className="listItemSidebar" >
-                                <ReceiptIcon className="sidebarIcon" />
-                                Transcripts
+                                <List className="sidebarIcon" />
+                                Lists
                             </li>
                         </NavLink>
                         <NavLink className="sidebarListItem link" to="/assessment">
