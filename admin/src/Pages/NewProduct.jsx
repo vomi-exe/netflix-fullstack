@@ -1,11 +1,12 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import "./newProduct.css";
-import { Link } from "react-router-dom"
 import Button from '@material-ui/core/Button';
+import storage from "../firebase";
+import { createMovie } from '../context/moviesContext/apiCalls';
+import { MovieContext } from '../context/moviesContext/MovieContext';
 
 
 const Newproduct = () => {
-
 
     const [movie, setMovie] = useState(null);
     const [img, setImg] = useState(null);
@@ -13,12 +14,56 @@ const Newproduct = () => {
     const [imgSm, setImgSm] = useState(null);
     const [trailer, setTrailer] = useState(null);
     const [video, setVideo] = useState(null);
+    const [uploaded, setUploaded] = useState(0);
+
+    const { dispatch } = useContext(MovieContext);
 
     const handleChange = (e) => {
         const value = e.target.value;
         setMovie({ ...movie, [e.target.name]: value });
     }
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        createMovie(movie, dispatch);
 
+    }
+
+    const upload = (items) => {
+        items.forEach((item) => {
+            const fileName = new Date().getTime() + item.label + item.file.name;
+            const uploadTask = storage.ref(`/items/${fileName}`).put(item.file);
+            uploadTask.on(
+                "state_changed",
+                (snapshot) => {
+                    const progress =
+                        (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                    console.log("Upload is " + progress + "% done");
+                },
+                (error) => {
+                    console.log(error);
+                },
+                () => {
+                    uploadTask.snapshot.ref.getDownloadURL().then((url) => {
+                        setMovie((prev) => {
+                            return { ...prev, [item.label]: url };
+                        });
+                        setUploaded((prev) => prev + 1);
+                    });
+                }
+            );
+        });
+    };
+
+    const handleUpload = (e) => {
+        e.preventDefault();
+        upload([
+            { file: img, label: "img" },
+            { file: imgTitle, label: "imgTitle" },
+            { file: imgSm, label: "imgSm" },
+            { file: trailer, label: "trailer" },
+            { file: video, label: "video" },
+        ])
+    };
 
     return (
         <div className="newProduct">
@@ -78,14 +123,25 @@ const Newproduct = () => {
                         onChange={(e) => setVideo(e.target.files[0])}
                     />
                 </div>
-                <Link className="link" to="/products">
-                    <Button className="newProductBtn" color="secondary" variant="contained" component="span">
+
+                {uploaded === 5 ?
+                    //<Link className="linkbtn" to="/movies">
+                    <Button className="newProductBtn" color="primary" onClick={handleSubmit} variant="contained" component="span">
+                        Create
+                    </Button>
+                    //</Link>
+                    :
+                    <Button className="newProductBtnDisabled" onClick={handleUpload} color="secondary" variant="contained" component="span">
                         Upload
                     </Button>
-                </Link>
+
+                }
+
             </form >
         </div >
     );
 }
+
+
 
 export default Newproduct;

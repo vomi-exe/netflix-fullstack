@@ -4,7 +4,6 @@ import LineStyleIcon from '@material-ui/icons/LineStyle';
 import TimelineIcon from '@material-ui/icons/Timeline';
 import TrendingUpIcon from '@material-ui/icons/TrendingUp';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
-import StoreIcon from '@material-ui/icons/Store';
 import ReceiptIcon from '@material-ui/icons/Receipt';
 import AssessmentIcon from '@material-ui/icons/Assessment';
 import MailOutlineIcon from '@material-ui/icons/MailOutline';

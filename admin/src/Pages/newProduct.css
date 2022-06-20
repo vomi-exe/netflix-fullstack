@@ -7,7 +7,7 @@
 .newProductBtn {
   width: 200px !important;
   font-weight: 600 !important;
-  margin-top: 1120px;
+  margin-top: 1120px !important;
 }
 
 #isSeries {
@@ -19,4 +19,15 @@
   margin: 10px 10px 15px 10px;
   color: black;
   font-weight: 600;
+}
+.newProductBtnDisabled{
+  width: 200px !important;
+  font-weight: 600 !important;
+  margin-top: 1120px !important;
+  height: 40px !important;
+
+}
+
+.linkbtn{
+  height: 40px ;
 }
