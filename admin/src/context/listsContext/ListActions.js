@@ -14,18 +14,18 @@ export const getListsFaliure = () => ({
 
 
 
-// export const createMoviesFaliure = () => ({
-//     type: "CREATE_MOVIES_FAILURE",
-// });
+export const createListFaliure = () => ({
+    type: "CREATE_LIST_FAILURE",
+});
 
-// export const createMoviesSuccess = (movie) => ({
-//     type: "CREATE_MOVIES_SUCCESS",
-//     payload: movie,
-// });
+export const createListSuccess = (list) => ({
+    type: "CREATE_LIST_SUCCESS",
+    payload: list,
+});
 
-// export const createMoviesStart = () => ({
-//     type: "CREATE_MOVIES_START",
-// });
+export const createListStart = () => ({
+    type: "CREATE_LIST_START",
+});
 
 
 

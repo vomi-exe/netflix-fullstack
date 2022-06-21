@@ -13,6 +13,8 @@ import Login from "./Pages/login/Login.jsx";
 import { useContext } from "react";
 import { AuthContext } from "./context/authContext/AuthContext";
 import ListList from "./Pages/listList/ListList";
+import List from "./Pages/list/List";
+import Newlist from "./Pages/newList/NewList";
 
 function App() {
 
@@ -47,8 +49,14 @@ function App() {
             <Route exact path="/create">
               <NewProduct />
             </Route>
-            <Route path="/lists" >
+            <Route exact path="/lists" >
               <ListList />
+            </Route>
+            <Route exact path="/lists/:listId">
+              <List />
+            </Route>
+            <Route exact path="/newlist">
+              <Newlist />
             </Route>
           </div>
         </>)

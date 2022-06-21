@@ -2,6 +2,7 @@ import React, { useContext, useState } from 'react';
 import "./newProduct.css";
 import Button from '@material-ui/core/Button';
 import storage from "../firebase";
+import { Link } from "react-router-dom";
 import { createMovie } from '../context/moviesContext/apiCalls';
 import { MovieContext } from '../context/moviesContext/MovieContext';
 
@@ -125,11 +126,11 @@ const Newproduct = () => {
                 </div>
 
                 {uploaded === 5 ?
-                    //<Link className="linkbtn" to="/movies">
-                    <Button className="newProductBtn" color="primary" onClick={handleSubmit} variant="contained" component="span">
-                        Create
-                    </Button>
-                    //</Link>
+                    <Link className="linkbtn" to="/movies">
+                        <Button className="newProductBtn" color="primary" onClick={handleSubmit} variant="contained" component="span">
+                            Create
+                        </Button>
+                    </Link>
                     :
                     <Button className="newProductBtnDisabled" onClick={handleUpload} color="secondary" variant="contained" component="span">
                         Upload
