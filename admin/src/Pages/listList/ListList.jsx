@@ -10,7 +10,7 @@ import { deleteLists } from '../../context/listsContext/apiCalls';
 
 
 const ListList = () => {
-    const { lists, isFetching, dispatch } = useContext(ListContext);
+    const { lists, dispatch } = useContext(ListContext);
 
 
     useEffect(() => {
@@ -79,16 +79,16 @@ const ListList = () => {
 
     return (
         <div className="productList">
-            {!isFetching &&
-                <DataGrid
-                    rows={lists}
-                    columns={columns}
-                    pageSize={11}
-                    checkboxSelection
-                    disableSelectionOnClick
-                    getRowId={r => r._id}
-                />
-            }
+
+            <DataGrid
+                rows={lists}
+                columns={columns}
+                pageSize={11}
+                checkboxSelection
+                disableSelectionOnClick
+                getRowId={r => r._id}
+            />
+
         </div>
     );
 }

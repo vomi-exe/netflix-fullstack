@@ -43,3 +43,10 @@
 .linkbtn{
   height: 40px ;
 }
+
+.errorMsg{
+  color: red;
+  position: absolute;
+  right: 55px;
+  bottom: 70px;
+}

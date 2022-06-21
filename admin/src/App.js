@@ -31,14 +31,14 @@ function App() {
             <Route path="/" exact>
               <Home />
             </Route>
-            <Route path="/users" exact>
+            <Route exact path="/users" >
               <UserList />
-            </Route>
-            <Route exact path="/users/newuser">
-              <Newuser />
             </Route>
             <Route exact path="/users/:userId">
               <User />
+            </Route>
+            <Route exact path="/newuser">
+              <Newuser />
             </Route>
             <Route path="/movies" exact>
               <Productlist />
