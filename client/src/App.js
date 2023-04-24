@@ -30,8 +30,7 @@ function App() {
                 <Route path="/series" element={<Home type="series" />} />
                 <Route path="/watch" element={<Watch />} />
               </>
-            ) : <Navigate to="/register
-            " />}
+            ) : <Navigate to="/register" />}
           </Switch>
         </div>
       </Router>

@@ -26,14 +26,20 @@
 .widgetSmListItem {
   display: flex;
   align-items: center;
-  justify-content: center;
-  margin: 20px 0;
+  justify-content: space-between;
+  margin: 20px;
+}
+.widgetSmItemInfo{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
 }
 
 .widgetSmUser {
   display: flex;
   flex-direction: column;
-  margin: 0 60px 0 20px;
+  margin: 0 30px 0 10px;
 }
 .widgetSmUsername {
   font-size: 18px;
@@ -57,6 +63,6 @@
   cursor: pointer;
 }
 .widgetSmbuttonIcon {
-  font-size: 18px !important;
+  font-size: 25px !important;
   margin-right: 5px;
 }

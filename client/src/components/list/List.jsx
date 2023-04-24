@@ -3,7 +3,7 @@ import { ArrowBackIos, ArrowForwardIos } from "@material-ui/icons";
 import ListItem from "../listItem/ListItem";
 import "./list.scss";
 
-const List = ({ list }) => {
+const List = ({ list, st }) => {
     const [slideNumber, setSlideNumber] = useState(0);
     const [isMoved, setIsMoved] = useState(false);
 
@@ -25,7 +25,7 @@ const List = ({ list }) => {
 
     const [num, setNum] = useState(-1);
 
-    return <div className="list">
+    return <div style={st && { marginBottom: "50px" }} className="list">
         <span className="listTitle">{list.title}</span>
         <div className="wrapper">
             <ArrowBackIos style={{ display: !isMoved && "none" }} className="sliderArrow left" onClick={() => handleClick("left")} />

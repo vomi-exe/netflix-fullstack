@@ -15,7 +15,7 @@ const WidgetSm = () => {
             try {
                 const res = await axios.get("users?new=true", {
                     headers: {
-                        token: "Beaere " + user.accessToken
+                        token: "Bearer " + user.accessToken
                     },
                 });
                 setNewUser(res.data);
@@ -34,12 +34,14 @@ const WidgetSm = () => {
                 {
                     newUser.map((user) => (
                         <li className="widgetSmListItem">
-                            <img className="widgetSmImg"
-                                src={user.profilePic ? user.profilePic : "https://upload.wikimedia.org/wikipedia/commons/0/0b/Netflix-avatar.png"}
-                                alt="Profile-Imge" />
-                            <div className="widgetSmUser">
-                                <span className="widgetSmUsername">{user.username}</span>
-                                <span className="widgetSmUserTitle">{user.email}</span>
+                            <div className="widgetSmItemInfo">
+                                <img className="widgetSmImg"
+                                    src={user.profilePic ? user.profilePic : "https://upload.wikimedia.org/wikipedia/commons/0/0b/Netflix-avatar.png"}
+                                    alt="Profile-Imge" />
+                                <div className="widgetSmUser">
+                                    <span className="widgetSmUsername">{user.username}</span>
+                                    <span className="widgetSmUserTitle">{user.email}</span>
+                                </div>
                             </div>
                             <button className="widgetSmButton">
                                 <VisibilityIcon className="widgetSmbuttonIcon" />
