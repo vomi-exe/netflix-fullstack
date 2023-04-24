@@ -16,7 +16,7 @@ const Home = ({ type }) => {
             try {
                 const res = await axios.get(`lists${type ? "?type=" + type : ""}${genre ? "?genre=" + genre : ""}`, {
                     headers: {
-                        token: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMDYzNDEyYzQ0ODIxMmQzYjdiM2FiNSIsImlzQWRtaW4iOnRydWUsImlhdCI6MTY4MjM2NzM0NiwiZXhwIjoxNjgyNzk5MzQ2fQ.RFBDYv50F_IRpnAbWa2w-CW_s5M98nQJNFTbY3MKhKw"
+                        token: "Bearer eyJhbGciOiJIUzI841NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMDYzNDEyYzQ0ODIxMmQzYjdiM2FiNSIsImlzQWRtaW4iOnRydWUsImlhdCI6MTY4MjM2NzM0NiwiZXhwIjoxNjgyNzk5MzQ2fQ.RFBDYv50F_IRpnAbWa2w-CW_s5M98nQJNFTbY3MKhKw"
                     },
                 });
                 setLists(res.data);
