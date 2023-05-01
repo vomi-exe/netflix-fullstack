@@ -5,8 +5,7 @@
       to bottom,
       rgba(0, 0, 0, 0) 0%,
       rgba(0, 0, 0, 1) 100%
-    ),
-    url("https://cdn.hipwallpaper.com/i/98/21/dUyCkp.jpg");
+    ),url("../../../public/netflix.jpg");
   position: relative;
 
   .top {
@@ -29,6 +28,7 @@
         font-size: 18px;
         font-weight: 500;
         cursor: pointer;
+        z-index: 9;
       }
     }
   }
@@ -101,5 +101,9 @@
       margin-left: 30px !important;
       bottom: 20px !important;
     }
+  }
+  .alert-msg{
+    margin-top:50px;
+    color: red;
   }
 }

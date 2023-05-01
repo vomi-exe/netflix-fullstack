@@ -1,22 +1,38 @@
 import { useState, useRef } from 'react';
 import "./register.scss";
-import Button from '@material-ui/core/Button';
-
-import { Link } from "react-router-dom";
+import { useHistory } from "react-router-dom";
+import axios from 'axios';
 
 const Register = () => {
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [username, setUsername] = useState("");
     const passwordRef = useRef();
     const emailRef = useRef();
-
+    const usernameRef = useRef();
+    const history = useHistory();
+    const [err, setErr] = useState(false);
     const handleStart = () => {
         setEmail(emailRef.current.value);
     }
 
-    const handleFinish = () => {
+    const handleFinish = async (e) => {
+        e.preventDefault();
+        setUsername(usernameRef.current.value);
         setPassword(passwordRef.current.value);
+        try {
+            await axios.post("auth/register", { email,username, password });
+            history.push('/login')
+        } catch (e) { 
+            setErr(true);
+        }
+
+    }
+
+    const handleSignInClick = (e) => {
+        e.preventDefault();
+        history.push('/login');
     }
 
     return <div className="register">
@@ -27,7 +43,7 @@ const Register = () => {
                     src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Netflix_2015_logo.svg/2560px-Netflix_2015_logo.svg.png"
                     alt=""
                 />
-                <button className="loginButton">Sign In</button>
+                <button className="loginButton" onClick={handleSignInClick}>Sign In</button>
             </div>
         </div>
         <div className="container">
@@ -42,11 +58,13 @@ const Register = () => {
                     <button className="registerButton" onClick={handleStart}>Get Started</button>
                 </div>
             ) : (
-                <form className="input">
-                    <input type="password" placeholder="Password" ref={passwordRef} />
+                    <form className="input">
+                    <input type="text" placeholder="Username" onChange={() => setErr(false)} ref={usernameRef} />   
+                    <input type="password" placeholder="Password" onChange={() => setErr(false)} ref={passwordRef} />
                     <button className="registerButton" onClick={handleFinish}>Start</button>
                 </form>
             )}
+            {err && <div className="alert-msg">Internal Error Please Try Again</div>}
         </div>
         {/* <p className="lastLine">
             <Link className="link" style={{ textDecoration: 'none' }} to="/home">
@@ -63,7 +81,6 @@ const Register = () => {
                 </Button>
             </Link>
         </p> */}
-
 
     </div>;
 };

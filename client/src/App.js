@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import Home from './pages/home/Home';
 import Watch from './pages/watch/Watch';
 import "./app.scss";
@@ -6,36 +6,39 @@ import Register from './pages/register/Register';
 import Login from './pages/login/Login';
 import {
   BrowserRouter as Router,
-  Routes as Switch,
+  Switch,
   Route,
-  Navigate
+  Redirect,
 } from "react-router-dom";
+import { AuthContext } from './Context/authContext/AuthContext';
 
-function App() {
-
-  const user = true;
-
+const App = () => {
+  const { user } = useContext(AuthContext);
   return (
-    <>
-      <Router >
-        <div>
-          <Switch>
-            <Route exact path="/" element={user ? <Home /> : <Navigate to="/register" />} />
-            <Route path="/register" element={!user ? <Register /> : <Navigate to="/" />} />
-            <Route path="/login" element={!user ? <Login /> : <Navigate to="/" />} />
-            <Route path="/login" element={<Login />} />
-            {user ? (
-              <>
-                <Route path="/movies" element={<Home type="movie" />} />
-                <Route path="/series" element={<Home type="series" />} />
-                <Route path="/watch" element={<Watch />} />
-              </>
-            ) : <Navigate to="/register" />}
-          </Switch>
-        </div>
-      </Router>
-    </>
+    <Router>
+      <Switch>
+        <Route exact path="/">
+          {user ? <Home /> : <Redirect to="/register" />}
+        </Route>
+        <Route path="/register">
+          {!user ? <Register /> : <Redirect to="/" />}
+        </Route>
+        <Route path="/login">{!user ? <Login /> : <Redirect to="/" />}</Route>
+        {user && (
+          <>
+            <Route path="/movies">
+              <Home type="movie" />
+            </Route>
+            <Route path="/series">
+              <Home type="series" />
+            </Route>
+            <Route path="/watch">
+              <Watch />
+            </Route>
+          </>
+        )}
+      </Switch>
+    </Router>
   );
-}
-
+};
 export default App;

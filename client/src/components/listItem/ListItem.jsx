@@ -1,21 +1,23 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { PlayArrow, AddOutlined, ThumbUpAltOutlined, ThumbDownOutlined } from "@material-ui/icons";
 import "./listItem.scss";
 import axios from "axios";
 import { Link } from "react-router-dom"
+import { AuthContext } from "../../Context/authContext/AuthContext";
 
 
 const ListItem = ({ index, setNum, num, id }) => {
 
     const [isHovered, setIsHovered] = useState(false);
     const [item, setItem] = useState({});
+    const { user } = useContext(AuthContext);
 
     useEffect(() => {
         const getItem = async () => {
             try {
                 const res = await axios.get("movies/find/" + id, {
                     headers: {
-                        token: "Beaere eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI68IjYyMDYzNDEyYzQ0ODIxMmQzYjdiM2FiNSIsImlzQWRtaW4iOnRydWUsImlhdCI6MTY4MjM2NzM0NiwiZXhwIjoxNjgyNzk5MzQ2fQ.RFBDYv50F_IRpnAbWa2w-CW_s5M98nQJNFTbY3MKhKw"
+                        token: "Bearer " + user.accessToken
                     },
                 });
                 setItem(res.data);
@@ -24,7 +26,7 @@ const ListItem = ({ index, setNum, num, id }) => {
             }
         }
         getItem();
-    }, [id]);
+    }, [id,user.accessToken]);
 
     return (
         <Link to="/watch" state={{ video: item.video }}>

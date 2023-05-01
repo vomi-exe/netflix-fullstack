@@ -30,18 +30,18 @@ export const createListStart = () => ({
 
 
 
-// export const updateMoviesFaliure = () => ({
-//     type: "UPDATE_MOVIES_FAILURE",
-// });
+export const updateListFaliure = () => ({
+    type: "UPDATE_LIST_FAILURE",
+});
 
-// export const updateMoviesSuccess = (movie) => ({
-//     type: "UPDATE_MOVIES_SUCCESS",
-//     payload: movie,
-// });
+export const updateListSuccess = (list) => ({
+    type: "UPDATE_LIST_SUCCESS",
+    payload: list,
+});
 
-// export const updateMoviesStart = () => ({
-//     type: "UPDATE_MOVIES_START",
-// });
+export const updateListsStart = () => ({
+    type: "UPDATE_LIST_START",
+});
 
 
 

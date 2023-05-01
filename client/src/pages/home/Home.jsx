@@ -1,22 +1,24 @@
 
 import Featured from "../../components/featured/Featured";
-import { useState, useEffect } from "react"
+import { useState, useEffect, useContext } from "react"
 import List from "../../components/list/List";
 import Navbar from "../../components/navbar/Navbar";
 import "./home.scss";
 import axios from "axios";
+import { AuthContext } from "../../Context/authContext/AuthContext";
 
 const Home = ({ type }) => {
 
     const [lists, setLists] = useState([]);
-    const [genre, setgenre] = useState(null);
+    const [genre, setGenre] = useState(null);
+    const { user } = useContext(AuthContext);
 
     useEffect(() => {
         const getRandomLists = async () => {
             try {
                 const res = await axios.get(`lists${type ? "?type=" + type : ""}${genre ? "?genre=" + genre : ""}`, {
                     headers: {
-                        token: "Bearer eyJhbGciOiJIUzI841NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMDYzNDEyYzQ0ODIxMmQzYjdiM2FiNSIsImlzQWRtaW4iOnRydWUsImlhdCI6MTY4MjM2NzM0NiwiZXhwIjoxNjgyNzk5MzQ2fQ.RFBDYv50F_IRpnAbWa2w-CW_s5M98nQJNFTbY3MKhKw"
+                        token: "Bearer " + user.accessToken
                     },
                 });
                 setLists(res.data);
@@ -25,12 +27,12 @@ const Home = ({ type }) => {
             }
         }
         getRandomLists();
-    }, [genre, type]);
+    }, [genre, type, user.accessToken]);
 
 
     return <div className="home">
         <Navbar />
-        <Featured type={type} />
+        <Featured type={type} setGenre={setGenre} />
         {lists.map((list, id) => (
             lists.length - 1 === id ?
                 <List key={id} list={list} st /> : <List key={id} list={list} />

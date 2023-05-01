@@ -1,19 +1,21 @@
 import { InfoOutlined, PlayArrow } from '@material-ui/icons';
-import React from 'react';
+import React, { useContext } from 'react';
 import "./featured.scss";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import { AuthContext } from '../../Context/authContext/AuthContext';
 
-const Featured = ({ type }) => {
+const Featured = ({ type, setGenre }) => {
 
     const [content, setContent] = useState({});
+    const { user } = useContext(AuthContext);
 
     useEffect(() => {
         const getRandomContent = async () => {
             try {
                 const res = await axios.get(`/movies/random?type=${type}`, {
                     headers: {
-                        token: "Beaere eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMDYzNDEyYzQ0ODIxMmQzYjdiM2FiNSIsImlzQWRtaW4iOnRydWUsImlhdCI6MTY4MjM2NzM0NiwiZXhwIjoxNjgy50Nzk5MzQ2fQ.RFBDYv50F_IRpnAbWa2w-CW_s5M98nQJNFTbY3MKhKw"
+                        token: "Bearer " + user.accessToken
                     },
                 });
                 setContent(res.data[0]);
@@ -22,7 +24,7 @@ const Featured = ({ type }) => {
             }
         }
         getRandomContent();
-    }, [type]);
+    }, [type,user.accessToken]);
 
 
 
@@ -30,7 +32,7 @@ const Featured = ({ type }) => {
         {type && (
             <div className="categary">
                 <span>{type === "movie" ? "Movies :" : "Series :"}</span>
-                <select name="genre" placeholder="genre" id="genre">
+                <select name="genre" placeholder="genre" id="genre" onChange={(e) => setGenre(e.target.value)}>
                     <option value="adventure">Adventure</option>
                     <option value="comedy">Comedy</option>
                     <option value="crime">Crime</option>

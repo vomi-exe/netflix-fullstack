@@ -22,7 +22,6 @@ const Topbar = () => {
         logoutStart(dispatch);
     }
 
-
     return (
         <div className="topbar">
             <div className="topbarwrapper">

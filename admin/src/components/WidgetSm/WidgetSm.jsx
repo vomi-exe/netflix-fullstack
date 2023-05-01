@@ -3,13 +3,14 @@ import "./widgetSm.css";
 import VisibilityIcon from '@material-ui/icons/Visibility';
 import axios from "axios";
 import { AuthContext } from "../../context/authContext/AuthContext";
+import { logoutStart } from '../../context/authContext/apiCalls';
 
 
 const WidgetSm = () => {
 
     const [newUser, setNewUser] = useState([]);
     const { user } = useContext(AuthContext);
-
+    const { dispatch } = useContext(AuthContext);
     useEffect(() => {
         const getNewUsers = async () => {
             try {
@@ -21,10 +22,11 @@ const WidgetSm = () => {
                 setNewUser(res.data);
             } catch (e) {
                 console.log(e);
+                logoutStart(dispatch);
             }
         }
         getNewUsers();
-    }, [user.accessToken]);
+    }, [user.accessToken , dispatch]);
 
 
     return (
