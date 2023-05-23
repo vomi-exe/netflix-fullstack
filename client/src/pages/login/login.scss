@@ -8,7 +8,7 @@
     ),
     url("../../../public/netflix.jpg");
   position: relative;
-
+  object-fit: fill;
   .top {
     .wrapper {
       padding: 20px 50px;

@@ -8,8 +8,6 @@ const movieRouter = require('./routes/movies');
 const listRouter = require('./routes/lists');
 
 
-
-
 dotenv.config();
 
 
